@@ -29,9 +29,16 @@ export default function CreateDeckPage() {
     }
 
     if (result.deckId) {
-      // Generate flashcards
+      // Generate flashcards with AI
       const topic = formData.get('topic') as string
-      await generateFlashcards(result.deckId, topic, 10)
+      const flashcardResult = await generateFlashcards(result.deckId, topic, 10)
+
+      if (flashcardResult.error) {
+        setError(flashcardResult.error)
+        setLoading(false)
+        return
+      }
+
       router.push(`/dashboard/deck/${result.deckId}`)
     }
   }
