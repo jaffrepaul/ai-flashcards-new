@@ -74,7 +74,21 @@ npm run db:push
 
 This will create all the necessary tables in your NeonDB database.
 
-### 5. Run the Development Server
+### 5. Seed Test Data (Optional)
+
+Create a test account and sample data:
+
+```bash
+npm run db:seed
+```
+
+**Test credentials:**
+- Email: `test@test.com`
+- Password: `password`
+
+This also creates a sample JavaScript deck with 5 flashcards so you can try the app immediately!
+
+### 6. Run the Development Server
 
 ```bash
 npm run dev
@@ -101,6 +115,7 @@ The app uses the following database tables:
 - `npm run db:generate` - Generate Drizzle migrations
 - `npm run db:push` - Push schema changes to database
 - `npm run db:studio` - Open Drizzle Studio (database GUI)
+- `npm run db:seed` - Seed database with test user and sample data
 
 ## Project Structure
 

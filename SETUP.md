@@ -46,7 +46,21 @@ Push the database schema to NeonDB:
 npm run db:push
 ```
 
-## Step 5: Start Development Server
+## Step 5: Add Test Data (Optional)
+
+Create a test account and sample flashcards:
+
+```bash
+npm run db:seed
+```
+
+This creates:
+- **Test account**: `test@test.com` / `password`
+- Sample deck with 5 JavaScript flashcards
+
+You can now skip signup and login immediately!
+
+## Step 6: Start Development Server
 
 ```bash
 npm run dev
