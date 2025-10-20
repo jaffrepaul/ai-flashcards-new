@@ -32,9 +32,12 @@ export async function signUp(formData: FormData): Promise<void> {
 
   const { name, email, password } = result.data
 
+  // Normalize email to lowercase for case-insensitive comparison
+  const normalizedEmail = email.toLowerCase()
+
   // Check if user already exists
   const existingUser = await db.query.users.findFirst({
-    where: eq(users.email, email),
+    where: eq(users.email, normalizedEmail),
   })
 
   if (existingUser) {
@@ -45,7 +48,7 @@ export async function signUp(formData: FormData): Promise<void> {
   const hashedPassword = await hashPassword(password)
   const [newUser] = await db.insert(users).values({
     name,
-    email,
+    email: normalizedEmail,
     password: hashedPassword,
   }).returning()
 
@@ -72,9 +75,12 @@ export async function signIn(formData: FormData): Promise<void> {
 
   const { email, password } = result.data
 
+  // Normalize email to lowercase for case-insensitive comparison
+  const normalizedEmail = email.toLowerCase()
+
   // Find user
   const user = await db.query.users.findFirst({
-    where: eq(users.email, email),
+    where: eq(users.email, normalizedEmail),
   })
 
   if (!user) {
